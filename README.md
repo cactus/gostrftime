@@ -1,6 +1,7 @@
 gostrftime
 ==========
 
+[![GoDoc](https://godoc.org/github.com/cactus/gostrftime?status.png)][1]
 
 ## About
 
@@ -29,6 +30,7 @@ Simple Go pkg for formatting time.Time in an strftime(3) like way.
 
 ## License
 
-Released under an [MIT license][1]. See `LICENSE.md` file for details.
+Released under an [MIT license][2]. See `LICENSE.md` file for details.
 
-[1]: http://www.opensource.org/licenses/mit-license.php)
+[1]: https://godoc.org/github.com/cactus/gostrftime
+[2]: http://www.opensource.org/licenses/mit-license.php
