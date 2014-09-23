@@ -26,7 +26,6 @@ Simple Go pkg for formatting time.Time in an strftime(3) like way.
         fmt.Println(gostrftime.Strftime("%Y-%m-%d", now))
     }
 
-## License
 
 ## License
 
