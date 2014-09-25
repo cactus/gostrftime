@@ -8,72 +8,72 @@ import (
 	"time"
 )
 
-const percentRune = rune('%')
+const percentRune = '%'
 
-func strftime(b *bytes.Buffer, c string, t time.Time) error {
+func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 	switch c {
-	case "A":
+	case 'A':
 		b.WriteString(t.Weekday().String())
-	case "a":
+	case 'a':
 		b.WriteString(t.Weekday().String()[:3])
-	case "B":
+	case 'B':
 		b.WriteString(t.Month().String())
-	case "b":
+	case 'b':
 		b.WriteString(t.Month().String()[:3])
-	case "C":
+	case 'C':
 		fmt.Fprintf(b, "%02d", t.Year())
-	case "D":
+	case 'D':
 		y, m, d := t.Date()
 		fmt.Fprintf(b, "%02d/%02d/%02d", m, d, y%100)
-	case "d":
+	case 'd':
 		fmt.Fprintf(b, "%02d", t.Day())
-	case "e":
+	case 'e':
 		fmt.Fprintf(b, "%2d", t.Day())
-	case "F":
+	case 'F':
 		y, m, d := t.Date()
 		fmt.Fprintf(b, "%04d-%02d-%02d", y, m, d)
-	case "H":
+	case 'H':
 		fmt.Fprintf(b, "%02d", t.Hour())
-	case "h":
+	case 'h':
 		b.WriteString(t.Month().String()[:3])
-	case "I":
+	case 'I':
 		hr := t.Hour() % 12
 		if hr == 0 {
 			hr = 12
 		}
 		fmt.Fprintf(b, "%02d", hr)
-	case "j":
+	case 'j':
 		fmt.Fprintf(b, "%03d", t.YearDay())
-	case "k":
+	case 'k':
 		fmt.Fprintf(b, "%2d", t.Hour())
-	case "l":
+	case 'l':
 		hr := t.Hour() % 12
 		if hr == 0 {
 			hr = 12
 		}
 		fmt.Fprintf(b, "%2d", hr)
-	case "M":
+	case 'M':
 		fmt.Fprintf(b, "%02d", t.Minute())
-	case "m":
+	case 'm':
 		fmt.Fprintf(b, "%02d", t.Month())
-	case "n":
+	case 'n':
 		b.WriteString("\n")
-	case "P":
+	case 'P':
 		if t.Hour() < 12 {
 			b.WriteString("am")
 		} else {
 			b.WriteString("pm")
 		}
-	case "p":
+	case 'p':
 		if t.Hour() < 12 {
 			b.WriteString("AM")
 		} else {
 			b.WriteString("PM")
 		}
-	case "R":
+	case 'R':
 		h, m, _ := t.Clock()
 		fmt.Fprintf(b, "%02d:%02d", h, m)
-	case "r":
+	case 'r':
 		h, m, s := t.Clock()
 
 		var tm string
@@ -89,27 +89,27 @@ func strftime(b *bytes.Buffer, c string, t time.Time) error {
 		}
 
 		fmt.Fprintf(b, "%02d:%02d:%02d %s", hr, m, s, tm)
-	case "S":
+	case 'S':
 		fmt.Fprintf(b, "%02d", t.Second())
-	case "s":
+	case 's':
 		b.WriteString(strconv.FormatInt(t.Unix(), 10))
-	case "T":
+	case 'T':
 		h, m, s := t.Clock()
 		fmt.Fprintf(b, "%02d:%02d:%02d", h, m, s)
-	case "t":
+	case 't':
 		b.WriteString("\t")
-	case "v":
+	case 'v':
 		fmt.Fprintf(b, "%2d-%s-%04d", t.Day(), t.Month().String()[:3], t.Year())
-	case "w":
+	case 'w':
 		fmt.Fprintf(b, "%d", t.Weekday())
-	case "Y":
+	case 'Y':
 		fmt.Fprintf(b, "%04d", t.Year())
-	case "y":
+	case 'y':
 		fmt.Fprintf(b, "%02d", t.Year()%100)
-	case "Z":
+	case 'Z':
 		zone, _ := t.Zone()
 		b.WriteString(zone)
-	case "z":
+	case 'z':
 		_, offset := t.Zone()
 		fmt.Fprintf(b, "%+05d", offset)
 	default:
@@ -186,7 +186,7 @@ func Strftime(format string, t time.Time) string {
 			continue
 		}
 
-		err = strftime(outBuf, string(nr), t)
+		err = strftime(outBuf, nr, t)
 		if err != nil {
 			outBuf.WriteRune(percentRune)
 			outBuf.WriteRune(nr)
