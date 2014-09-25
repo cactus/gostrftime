@@ -31,6 +31,10 @@ var formattests = []struct {
 		"%/this/is/a/test/%9/test.log%",
 		"%/this/is/a/test/%9/test.log%",
 	},
+	{
+		"%ü-%Y-%m-%d-%%%m-%%%%m-ü",
+		"%ü-2009-01-02-%01-%%m-ü",
+	},
 	{"%A", "Friday"},
 	{"%a", "Fri"},
 	{"%B", "January"},
