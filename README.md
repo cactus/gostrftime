@@ -25,7 +25,7 @@ Simple Go pkg for formatting time.Time in an strftime(3) like way.
 
     func main() {
         now := time.Now()
-        fmt.Println(gostrftime.Strftime("%Y-%m-%d", now))
+        fmt.Println(gostrftime.Format("%Y-%m-%d", now))
     }
 
 

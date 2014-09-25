@@ -74,7 +74,7 @@ func TestStrfFormat(t *testing.T) {
 
 	tm := time.Date(2009, time.January, 2, 3, 4, 0, 0, time.UTC)
 	for _, tt := range formattests {
-		output := Strftime(tt.format, tm)
+		output := Format(tt.format, tm)
 		assert.Equal(tt.expected, output)
 	}
 }
@@ -84,7 +84,7 @@ func BenchmarkStrfFormatAll(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		Strftime("%A %a %B %b %C %D %d %e %F %H %h %I %j %k %l %M %m %n %p %R %r %S %s %T %t %v %w %Y %y %Z %z", tm)
+		Format("%A %a %B %b %C %D %d %e %F %H %h %I %j %k %l %M %m %n %p %R %r %S %s %T %t %v %w %Y %y %Z %z", tm)
 	}
 }
 
@@ -93,6 +93,6 @@ func BenchmarkStrfFormatSimple(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		Strftime(formattests[0].format, tm)
+		Format(formattests[0].format, tm)
 	}
 }

@@ -119,7 +119,7 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 	return nil
 }
 
-// Strftime returns a textual representation of the time value
+// Format returns a textual representation of the time value
 // formatting according to format. format supports most of the formatting
 // methods defined in strftime(3), minus the GNU libc extensions and POSIX
 // locale extensions
@@ -156,7 +156,7 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 //  %y  replaced by year without century as a number. Single digits are preceded by zero (14)
 //  %Z  replaced by time zone name (UTC)
 //  %z  replaced by the time zone offset from UTC (-0700)
-func Strftime(format string, t time.Time) string {
+func Format(format string, t time.Time) string {
 	if !strings.Contains(format, "%") {
 		return format
 	}
@@ -194,4 +194,9 @@ func Strftime(format string, t time.Time) string {
 		}
 	}
 	return outBuf.String()
+}
+
+// Alias for Format
+func Strftime(format string, t time.Time) string {
+	return Format(format, t)
 }
