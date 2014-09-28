@@ -8,8 +8,6 @@ import (
 	"time"
 )
 
-const percentRune = '%'
-
 func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 	switch c {
 	case 'A':
@@ -57,7 +55,7 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 	case 'm':
 		fmt.Fprintf(b, "%02d", t.Month())
 	case 'n':
-		b.WriteString("\n")
+		b.WriteByte('\n')
 	case 'P':
 		if t.Hour() < 12 {
 			b.WriteString("am")
@@ -97,7 +95,7 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 		h, m, s := t.Clock()
 		fmt.Fprintf(b, "%02d:%02d:%02d", h, m, s)
 	case 't':
-		b.WriteString("\t")
+		b.WriteByte('\t')
 	case 'v':
 		fmt.Fprintf(b, "%2d-%s-%04d", t.Day(), t.Month().String()[:3], t.Year())
 	case 'w':
@@ -169,7 +167,7 @@ func Format(format string, t time.Time) string {
 			break
 		}
 
-		if r != percentRune {
+		if r != '%' {
 			outBuf.WriteRune(r)
 			continue
 		}
@@ -178,17 +176,17 @@ func Format(format string, t time.Time) string {
 		if err != nil {
 			// got a percent, but then end of string
 			// just append % and finish
-			outBuf.WriteRune(percentRune)
+			outBuf.WriteByte('%')
 			break
 		}
-		if nr == percentRune {
-			outBuf.WriteRune(percentRune)
+		if nr == '%' {
+			outBuf.WriteByte('%')
 			continue
 		}
 
 		err = strftime(outBuf, nr, t)
 		if err != nil {
-			outBuf.WriteRune(percentRune)
+			outBuf.WriteByte('%')
 			outBuf.WriteRune(nr)
 			continue
 		}
