@@ -1,3 +1,4 @@
+// Package gostrftime formats time.Time using strftime(3) conventions.
 package gostrftime
 
 import (
@@ -120,7 +121,8 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 // Format returns a textual representation of the time value
 // formatting according to format. format supports most of the formatting
 // methods defined in strftime(3), minus the GNU libc extensions and POSIX
-// locale extensions
+// locale extensions.
+//
 // List of accepted format expansion values:
 //  %A  replaced by full weekday name (Sunday)
 //  %a  replaced by abbreviated weekday name (Sun)
