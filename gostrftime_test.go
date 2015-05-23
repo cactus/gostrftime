@@ -1,6 +1,7 @@
 package gostrftime
 
 import (
+	"fmt"
 	"testing"
 	"time"
 
@@ -75,7 +76,31 @@ func TestStrfFormat(t *testing.T) {
 	tm := time.Date(2009, time.January, 2, 3, 4, 0, 0, time.UTC)
 	for _, tt := range formattests {
 		output := Format(tt.format, tm)
-		assert.Equal(tt.expected, output)
+		assert.Equal(tt.expected, output, fmt.Sprintf("%s not right", tt.format))
+	}
+}
+
+func TestStrfFormatNotUTC(t *testing.T) {
+	t.Parallel()
+	assert := assert.New(t)
+
+	// use a timezone that doesn't do daylight savings
+	location := time.FixedZone("Saskatchewan", -6*60*60)
+	tm := time.Date(2009, time.January, 2, 3, 4, 0, 0, location)
+	for _, tt := range formattests {
+		var expected string
+		switch tt.format {
+		case "%Z":
+			expected = "Saskatchewan"
+		case "%z":
+			expected = "-0600"
+		case "%s":
+			expected = "1230887040"
+		default:
+			expected = tt.expected
+		}
+		output := Format(tt.format, tm)
+		assert.Equal(expected, output, fmt.Sprintf("%s not right", tt.format))
 	}
 }
 
