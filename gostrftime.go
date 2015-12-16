@@ -31,6 +31,9 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 	case 'F':
 		y, m, d := t.Date()
 		fmt.Fprintf(b, "%04d-%02d-%02d", y, m, d)
+	case 'f':
+		usec := t.Nanosecond() / 1e3
+		fmt.Fprintf(b, "%06d", int(usec))
 	case 'H':
 		fmt.Fprintf(b, "%02d", t.Hour())
 	case 'h':
