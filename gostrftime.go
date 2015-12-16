@@ -136,6 +136,7 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 //  %D  equivalent to %m/%d/%y (09/21/14)
 //  %d  replaced by day of month as number. Single digits are preceded by zero (21)
 //  %e  replaced by day of month as number. Signle digits are preceded by a blank (21)
+//  %f  replaced by microsecond as a decimal number, zero-padded on the left (000123)
 //  %F  equivalent to %Y-%m-%d (2014-09-21)
 //  %H  replaced by the hour (24 hour clock) as a number. Single digits are preceded by zero (15)
 //  %h  same as %b
