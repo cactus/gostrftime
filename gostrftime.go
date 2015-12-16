@@ -113,8 +113,8 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 		b.WriteString(zone)
 	case 'z':
 		_, offset := t.Zone()
-		allMinutes := int(offset/60)
-		fmt.Fprintf(b, "%+03d%02d", int(allMinutes / 60), int(allMinutes % 60))
+		allMinutes := int(offset / 60)
+		fmt.Fprintf(b, "%+03d%02d", int(allMinutes/60), int(allMinutes%60))
 	default:
 		return fmt.Errorf("No valid replacement")
 	}
