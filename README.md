@@ -6,7 +6,8 @@ gostrftime
 
 ## About
 
-Simple Go pkg for formatting time.Time in an strftime(3) like way.
+A Go pkg for formatting time.Time in an strftime(3) like way. Basically,
+strftime for Go.
 
 
 ## Installing
