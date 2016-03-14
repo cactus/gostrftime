@@ -49,15 +49,17 @@ var formattests = []struct {
 	{"%d", "02"},
 	{"%e", " 2"},
 	{"%F", "2009-01-02"},
-	{"%f", "000123"},
+	{"%f", "001234"},
 	{"%H", "03"},
 	{"%h", "Jan"},
 	{"%I", "03"},
 	{"%j", "002"},
 	{"%k", " 3"},
+	{"%L", "001"},
 	{"%l", " 3"},
 	{"%M", "04"},
 	{"%m", "01"},
+	{"%N", "001234567"},
 	{"%n", "\n"},
 	{"%p", "AM"},
 	{"%R", "03:04"},
@@ -78,7 +80,7 @@ func TestStrfFormat(t *testing.T) {
 	t.Parallel()
 	assert := assert.New(t)
 
-	tm := time.Date(2009, time.January, 2, 3, 4, 0, 123456, time.UTC)
+	tm := time.Date(2009, time.January, 2, 3, 4, 0, 1234567, time.UTC)
 	for _, tt := range formattests {
 		output := Format(tt.format, tm)
 		assert.Equal(tt.expected, output, fmt.Sprintf("%s not right", tt.format))
@@ -91,7 +93,7 @@ func TestStrfFormatNotUTC(t *testing.T) {
 
 	// use a timezone that doesn't do daylight savings
 	location := time.FixedZone("Saskatchewan", -6*60*60)
-	tm := time.Date(2009, time.January, 2, 3, 4, 0, 123456, location)
+	tm := time.Date(2009, time.January, 2, 3, 4, 0, 1234567, location)
 	for _, tt := range formattests {
 		var expected string
 		switch tt.format {
@@ -114,12 +116,12 @@ func BenchmarkStrfFormatAll(b *testing.B) {
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {
-		Format("%A %a %B %b %C %D %d %e %F %f %H %h %I %j %k %l %M %m %n %p %R %r %S %s %T %t %v %w %Y %y %Z %z", tm)
+		Format("%A %a %B %b %C %D %d %e %F %f %H %h %I %j %k %L %l %M %m %N %n %p %R %r %S %s %T %t %v %w %Y %y %Z %z", tm)
 	}
 }
 
 func BenchmarkStrfFormatSimple(b *testing.B) {
-	tm := time.Date(2009, time.November, 10, 23, 0, 0, 123456, time.UTC)
+	tm := time.Date(2009, time.November, 10, 23, 0, 0, 1234567, time.UTC)
 	b.ReportAllocs()
 	b.ResetTimer()
 	for i := 0; i < b.N; i++ {

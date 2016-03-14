@@ -52,6 +52,9 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 		fmt.Fprintf(b, "%03d", t.YearDay())
 	case 'k':
 		fmt.Fprintf(b, "%2d", t.Hour())
+	case 'L':
+		msec := t.Nanosecond() / 1e6
+		fmt.Fprintf(b, "%03d", int(msec))
 	case 'l':
 		hr := t.Hour() % 12
 		if hr == 0 {
@@ -62,6 +65,8 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 		fmt.Fprintf(b, "%02d", t.Minute())
 	case 'm':
 		fmt.Fprintf(b, "%02d", t.Month())
+	case 'N':
+		fmt.Fprintf(b, "%09d", t.Nanosecond())
 	case 'n':
 		b.WriteByte('\n')
 	case 'P':
@@ -140,16 +145,18 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 //  %D  equivalent to %m/%d/%y (09/21/14)
 //  %d  replaced by day of month as number. Single digits are preceded by zero (21)
 //  %e  replaced by day of month as number. Signle digits are preceded by a blank (21)
-//  %f  replaced by microsecond as a decimal number, zero-padded on the left (000123)
+//  %f  replaced by microsecond as a six digit decimal number, zero-padded on the left (001234)
 //  %F  equivalent to %Y-%m-%d (2014-09-21)
 //  %H  replaced by the hour (24 hour clock) as a number. Single digits are preceded by zero (15)
 //  %h  same as %b
 //  %I  replaced by the hour (12 hour clock) as a number. Single digits are preceded by zero (03)
 //  %j  replaced by the day of the year as a decimal number. Single digits are preced by zeros (264)
 //  %k  replaced by the hour (24 hour clock) as a number. Single digits are preceded by a blank (15)
+//  %L  replaced by millisecond as a three digit decimal number, zero-padded on the left (001)
 //  %l  replaced by the hour (12 hour clock) as a number. Single digits are preceded by blank ( 3)
 //  %M  replaced by the minute as a decimal number. Single digits are preceded by a zero (32)
 //  %m  replaced by the month as a decimal number. Single digits are preceded by a zero (09)
+//  %N  replaced by nanosecond as a 9 digit decimal number, zero-padded on the left (001234567)
 //  %n  replaced by a newline (\n)
 //  %P  replaced by am or pm as appropriate
 //  %p  replaced by AM or PM as appropriate
