@@ -16,7 +16,7 @@ Basically, strftime for Go, with a couple of additions.
 
 ## Supported formats:
 
-| Format code | Description |
+| code | Description |
 | ---- | --- |
 | `%A` | replaced by full weekday name (Sunday) |
 | `%a` | replaced by abbreviated weekday name (Sun) |
