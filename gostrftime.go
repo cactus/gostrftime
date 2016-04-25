@@ -137,41 +137,41 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 // locale extensions.
 //
 // List of accepted format expansion values:
-//  %A  replaced by full weekday name (Sunday)
-//  %a  replaced by abbreviated weekday name (Sun)
-//  %B  replaced by full month name (September)
-//  %b  replaced by abbreviated month name (Sep)
-//  %C  replaced by (year / 100) as number. Single digits are preceded by zero (20)
+//  %A  full weekday name (Sunday)
+//  %a  abbreviated weekday name (Sun)
+//  %B  full month name (September)
+//  %b  abbreviated month name (Sep)
+//  %C  (year / 100) as number. Single digits are preceded by zero (20)
 //  %D  equivalent to %m/%d/%y (09/21/14)
-//  %d  replaced by day of month as number. Single digits are preceded by zero (21)
-//  %e  replaced by day of month as number. Signle digits are preceded by a blank (21)
-//  %f  replaced by microsecond as a six digit decimal number, zero-padded on the left (001234)
+//  %d  day of month as number. Single digits are preceded by zero (21)
+//  %e  day of month as number. Signle digits are preceded by a blank (21)
+//  %f  microsecond as a six digit decimal number, zero-padded on the left (001234)
 //  %F  equivalent to %Y-%m-%d (2014-09-21)
-//  %H  replaced by the hour (24 hour clock) as a number. Single digits are preceded by zero (15)
+//  %H  the hour (24 hour clock) as a number. Single digits are preceded by zero (15)
 //  %h  same as %b
-//  %I  replaced by the hour (12 hour clock) as a number. Single digits are preceded by zero (03)
-//  %j  replaced by the day of the year as a decimal number. Single digits are preced by zeros (264)
-//  %k  replaced by the hour (24 hour clock) as a number. Single digits are preceded by a blank (15)
-//  %L  replaced by millisecond as a three digit decimal number, zero-padded on the left (001)
-//  %l  replaced by the hour (12 hour clock) as a number. Single digits are preceded by blank ( 3)
-//  %M  replaced by the minute as a decimal number. Single digits are preceded by a zero (32)
-//  %m  replaced by the month as a decimal number. Single digits are preceded by a zero (09)
-//  %N  replaced by nanosecond as a 9 digit decimal number, zero-padded on the left (001234567)
-//  %n  replaced by a newline (\n)
-//  %P  replaced by am or pm as appropriate
-//  %p  replaced by AM or PM as appropriate
+//  %I  the hour (12 hour clock) as a number. Single digits are preceded by zero (03)
+//  %j  the day of the year as a decimal number. Single digits are preced by zeros (264)
+//  %k  the hour (24 hour clock) as a number. Single digits are preceded by a blank (15)
+//  %L  millisecond as a three digit decimal number, zero-padded on the left (001)
+//  %l  the hour (12 hour clock) as a number. Single digits are preceded by blank ( 3)
+//  %M  the minute as a decimal number. Single digits are preceded by a zero (32)
+//  %m  the month as a decimal number. Single digits are preceded by a zero (09)
+//  %N  nanosecond as a 9 digit decimal number, zero-padded on the left (001234567)
+//  %n  a newline (\n)
+//  %P  am or pm as appropriate
+//  %p  AM or PM as appropriate
 //  %R  equivalent to %H:%M
 //  %r  equivalent to %I:%M:%S %p
-//  %S  replaced by the second as a number. Single digits are preceded by a zero (05)
-//  %s  replaced by the number of seconds since the Epoch, UTC
+//  %S  the second as a number. Single digits are preceded by a zero (05)
+//  %s  the number of seconds since the Epoch, UTC
 //  %T  equivalant to %H:%M:%S
-//  %t  replaced by a tab (\t)
+//  %t  a tab (\t)
 //  %v  equivalent to %e-%b-%Y
-//  %w  replaced by the weekday (Sunday as first day of the week) as a number. (0)
-//  %Y  replaced by the year with century as a number (2014)
-//  %y  replaced by year without century as a number. Single digits are preceded by zero (14)
-//  %Z  replaced by time zone name (UTC)
-//  %z  replaced by the time zone offset from UTC (-0700)
+//  %w  the weekday (Sunday as first day of the week) as a number. (0)
+//  %Y  the year with century as a number (2014)
+//  %y  year without century as a number. Single digits are preceded by zero (14)
+//  %Z  time zone name (UTC)
+//  %z  the time zone offset from UTC (-0700)
 func Format(format string, t time.Time) string {
 	if !strings.Contains(format, "%") {
 		return format
