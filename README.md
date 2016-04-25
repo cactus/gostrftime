@@ -16,43 +16,43 @@ Basically, strftime for Go, with a couple of additions.
 
 ## Supported formats:
 
-| code | Description |
-| ---- | --- |
-| `%A` | replaced by full weekday name (Sunday) |
-| `%a` | replaced by abbreviated weekday name (Sun) |
-| `%B` | replaced by full month name (September) |
-| `%b` | replaced by abbreviated month name (Sep) |
-| `%C` | replaced by (year / 100) as number. Single digits are preceded by zero (20) |
-| `%D` | equivalent to `%m/%d/%y` (09/21/14) |
-| `%d` | replaced by day of month as number. Single digits are preceded by zero (21) |
-| `%e` | replaced by day of month as number. Signle digits are preceded by a blank (21) |
-| `%f` | replaced by microsecond as a six digit decimal number, zero-padded on the left (001234) |
-| `%F` | equivalent to` %Y-%m-%d` (2014-09-21) |
-| `%H` | replaced by the hour (24 hour clock) as a number. Single digits are preceded by zero (15) |
-| `%h` | same as `%b` |
-| `%I` | replaced by the hour (12 hour clock) as a number. Single digits are preceded by zero (03) |
-| `%j` | replaced by the day of the year as a decimal number. Single digits are preced by zeros (26 |4)
-| `%k` | replaced by the hour (24 hour clock) as a number. Single digits are preceded by a blank (15 |)
-| `%L` | replaced by millisecond as a three digit decimal number, zero-padded on the left (001) |
-| `%l` | replaced by the hour (12 hour clock) as a number. Single digits are preceded by blank ( 3) |
-| `%M` | replaced by the minute as a decimal number. Single digits are preceded by a zero (32) |
-| `%m` | replaced by the month as a decimal number. Single digits are preceded by a zero (09) |
-| `%N` | replaced by nanosecond as a 9 digit decimal number, zero-padded on the left (001234567) |
-| `%n` | replaced by a newline (`\n`) |
-| `%P` | replaced by am or pm as appropriate |
-| `%p` | replaced by AM or PM as appropriate |
-| `%R` | equivalent to `%H:%M` |
-| `%r` | equivalent to `%I:%M:%S %p` |
-| `%S` | replaced by the second as a number. Single digits are preceded by a zero (05) |
-| `%s` | replaced by the number of seconds since the Epoch, UTC |
-| `%T` | equivalant to `%H:%M:%S` |
-| `%t` | replaced by a tab (`\t`) |
-| `%v` | equivalent to `%e-%b-%Y` |
-| `%w` | replaced by the weekday (Sunday as first day of the week) as a number. (0) |
-| `%Y` | replaced by the year with century as a number (2014) |
-| `%y` | replaced by year without century as a number. Single digits are preceded by zero (14) |
-| `%Z` | replaced by time zone name (UTC) |
-| `%z` | replaced by the time zone offset from UTC (-0700) |
+| code | example | Description |
+| ---- | ------- | --- |
+| `%A` | `Sunday` | full weekday name |
+| `%a` | `Sun` | abbreviated weekday name |
+| `%B` | `September` | full month name |
+| `%b` | `Sep` | abbreviated month name |
+| `%C` | `20` | (`year / 100`) as number. Single digits are preceded by zero |
+| `%D` | `09/21/14` | equivalent to `%m/%d/%y` |
+| `%d` | `02` | day of month as number. Single digits are preceded by zero |
+| `%e` | ` 2` | day of month as number. Single digits are preceded by a blank |
+| `%f` | `001234` | microsecond as a six digit decimal number, zero-padded on the left |
+| `%F` | `2014-09-21` | equivalent to` %Y-%m-%d` |
+| `%H` | `15` | the hour (24 hour clock) as a number. Single digits are preceded by zero |
+| `%h` | `Sep` | same as `%b` |
+| `%I` | `03` | the hour (12 hour clock) as a number. Single digits are preceded by zero |
+| `%j` | `264` | the day of the year as a decimal number. Single digits are preced by zeros |
+| `%k` | `15` | the hour (24 hour clock) as a number. Single digits are preceded by a blank |
+| `%L` | `001` | millisecond as a three digit decimal number, zero-padded on the left |
+| `%l` | ` 3` | replaced by the hour (12 hour clock) as a number. Single digits are preceded by blank |
+| `%M` | `32` | replaced by the minute as a decimal number. Single digits are preceded by a zero (32) |
+| `%m` | `09` | replaced by the month as a decimal number. Single digits are preceded by a zero (09) |
+| `%N` | `001234567` | nanosecond as a 9 digit decimal number, zero-padded on the left () |
+| `%n` | `\n` | a newline (`\n`) |
+| `%P` | `am` | am or pm as appropriate |
+| `%p` | `AM` | AM or PM as appropriate |
+| `%R` | `15:32` | equivalent to `%H:%M` |
+| `%r` | `03:32:05 am` | equivalent to `%I:%M:%S %p` |
+| `%S` | `05` | the second as a number. Single digits are preceded by a zero |
+| `%s` | `1461497457` | the number of seconds since the Epoch, UTC |
+| `%T` | `15:32:05` | equivalant to `%H:%M:%S` |
+| `%t` | `\t` | a tab |
+| `%v` | ` 2-Sep-2014` | equivalent to `%e-%b-%Y` |
+| `%w` | `0` |the weekday (Sunday as first day of the week) as a number |
+| `%Y` | `2014` | replaced by the year with century as a number |
+| `%y` | `14` | year without century as a number. Single digits are preceded by zero |
+| `%Z` | `UTC` | time zone name |
+| `%z` | `-0700` | the time zone offset from UTC |
 
 
 ## Using
