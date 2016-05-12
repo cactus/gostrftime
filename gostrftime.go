@@ -164,7 +164,7 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 //  %r  equivalent to %I:%M:%S %p
 //  %S  the second as a number. Single digits are preceded by a zero (05)
 //  %s  the number of seconds since the Epoch, UTC
-//  %T  equivalant to %H:%M:%S
+//  %T  equivalent to %H:%M:%S
 //  %t  a tab (\t)
 //  %v  equivalent to %e-%b-%Y
 //  %w  the weekday (Sunday as first day of the week) as a number. (0)
@@ -212,7 +212,7 @@ func Format(format string, t time.Time) string {
 	return outBuf.String()
 }
 
-// Alias for Format
+// Strftime is an alias for Format
 func Strftime(format string, t time.Time) string {
 	return Format(format, t)
 }
