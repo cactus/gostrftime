@@ -4,6 +4,7 @@ gostrftime
 [![Build Status](https://travis-ci.org/cactus/gostrftime.png?branch=master)][1]
 [![GoDoc](https://godoc.org/github.com/cactus/gostrftime?status.png)][2]
 [![Go Report Card](https://goreportcard.com/badge/cactus/gostrftime)](https://goreportcard.com/report/cactus/gostrftime)
+[![License](https://img.shields.io/github/license/cactus/gostrftime.svg)](https://github.com/cactus/gostrftime/blob/master/LICENSE.md)
 
 ## About
 
