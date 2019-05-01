@@ -74,8 +74,8 @@ Basically, strftime for Go, with a couple of additions.
 
 ## License
 
-Released under an [MIT license][3]. See `LICENSE.md` file for details.
+Released under an [ISC license][3]. See `LICENSE.md` file for details.
 
 [1]: https://travis-ci.org/cactus/gostrftime
 [2]: https://godoc.org/github.com/cactus/gostrftime
-[3]: http://www.opensource.org/licenses/mit-license.php
+[3]: https://choosealicense.com/licenses/isc/
