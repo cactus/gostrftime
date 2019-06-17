@@ -205,7 +205,7 @@ func Format(format string, t time.Time) string {
 		if nr == '%' {
 			outBuf.WriteByte('%')
 			continue
-		} else if nr >= '\x80' {
+		} else if nr >= 0x80 {
 			// if part of a utf8 continuation (value >= utf8.RuneSelf, which is 0x80),
 			// then just write out and continue
 			outBuf.WriteByte('%')
