@@ -207,7 +207,7 @@ func Format(format string, t time.Time) string {
 			outBuf.WriteByte('%')
 			continue
 		} else if nr >= utf8.RuneSelf {
-			// if part of a unicode surrogate pair, write out and continue
+			// if part of a utf8 continuation (>=0x80), then write out and continue
 			outBuf.WriteByte('%')
 			outBuf.WriteByte(nr)
 			continue
