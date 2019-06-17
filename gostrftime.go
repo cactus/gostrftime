@@ -11,7 +11,6 @@ import (
 	"strconv"
 	"strings"
 	"time"
-	"unicode/utf8"
 )
 
 func strftime(b *bytes.Buffer, c byte, t time.Time) error {
@@ -206,8 +205,9 @@ func Format(format string, t time.Time) string {
 		if nr == '%' {
 			outBuf.WriteByte('%')
 			continue
-		} else if nr >= utf8.RuneSelf {
-			// if part of a utf8 continuation (>=0x80), then write out and continue
+		} else if nr >= '\x80' {
+			// if part of a utf8 continuation (value >= utf8.RuneSelf, which is 0x80),
+			// then just write out and continue
 			outBuf.WriteByte('%')
 			outBuf.WriteByte(nr)
 			continue
