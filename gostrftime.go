@@ -11,9 +11,10 @@ import (
 	"strconv"
 	"strings"
 	"time"
+	"unicode/utf8"
 )
 
-func strftime(b *bytes.Buffer, c rune, t time.Time) error {
+func strftime(b *bytes.Buffer, c byte, t time.Time) error {
 	switch c {
 	case 'A':
 		b.WriteString(t.Weekday().String())
@@ -173,39 +174,49 @@ func strftime(b *bytes.Buffer, c rune, t time.Time) error {
 //  %Z  time zone name (UTC)
 //  %z  the time zone offset from UTC (-0700)
 func Format(format string, t time.Time) string {
-	if !strings.Contains(format, "%") {
+	if strings.IndexByte(format, '%') < 0 {
 		return format
 	}
 
 	outBuf := &bytes.Buffer{}
 	rr := strings.NewReader(format)
 	for {
-		r, _, err := rr.ReadRune()
+		// avoid a tiny bit of overhead by using ReadByte instead of ReadRune.
+		// ReadRune does a comparison check against utf8.RuneSelf on every
+		// "read", and we only care about that check /right after/ seeing a
+		// '%', as we won't call format in that case.
+		r, err := rr.ReadByte()
 		if err != nil {
 			break
 		}
 
 		if r != '%' {
-			outBuf.WriteRune(r)
+			outBuf.WriteByte(r)
 			continue
 		}
 
-		nr, _, err := rr.ReadRune()
+		nr, err := rr.ReadByte()
 		if err != nil {
 			// got a percent, but then end of string
 			// just append % and finish
 			outBuf.WriteByte('%')
 			break
 		}
+
 		if nr == '%' {
 			outBuf.WriteByte('%')
+			continue
+		} else if nr >= utf8.RuneSelf {
+			// if part of a unicode surrogate pair, write out and continue
+			outBuf.WriteByte('%')
+			outBuf.WriteByte(nr)
 			continue
 		}
 
 		err = strftime(outBuf, nr, t)
 		if err != nil {
 			outBuf.WriteByte('%')
-			outBuf.WriteRune(nr)
+			outBuf.WriteByte(nr)
 			continue
 		}
 	}
