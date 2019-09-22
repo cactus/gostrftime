@@ -76,6 +76,6 @@ Basically, strftime for Go, with a couple of additions.
 
 Released under an [ISC license][3]. See `LICENSE.md` file for details.
 
-[1]: https://github.com/cactus/go-statsd-client/actions
+[1]: https://github.com/cactus/gostrftime/actions
 [2]: https://godoc.org/github.com/cactus/gostrftime
 [3]: https://choosealicense.com/licenses/isc/
