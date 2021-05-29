@@ -9,7 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/stretchr/testify/assert"
+	"gotest.tools/v3/assert"
+	is "gotest.tools/v3/assert/cmp"
 )
 
 var formattests = []struct {
@@ -94,18 +95,16 @@ var formattests = []struct {
 
 func TestStrfFormat(t *testing.T) {
 	t.Parallel()
-	assert := assert.New(t)
 
 	tm := time.Date(2009, time.January, 2, 3, 4, 0, 1234567, time.UTC)
 	for _, tt := range formattests {
 		output := Format(tt.format, tm)
-		assert.Equal(tt.expected, output, fmt.Sprintf("%s not right", tt.format))
+		assert.Check(t, is.Equal(tt.expected, output), fmt.Sprintf("%s not right", tt.format))
 	}
 }
 
 func TestStrfFormatNotUTC(t *testing.T) {
 	t.Parallel()
-	assert := assert.New(t)
 
 	// use a timezone that doesn't do daylight savings
 	location := time.FixedZone("Saskatchewan", -6*60*60)
@@ -123,7 +122,7 @@ func TestStrfFormatNotUTC(t *testing.T) {
 			expected = tt.expected
 		}
 		output := Format(tt.format, tm)
-		assert.Equal(expected, output, fmt.Sprintf("%s not right", tt.format))
+		assert.Check(t, is.Equal(expected, output), fmt.Sprintf("%s not right", tt.format))
 	}
 }
 
