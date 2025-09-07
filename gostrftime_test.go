@@ -9,8 +9,7 @@ import (
 	"testing"
 	"time"
 
-	"gotest.tools/v3/assert"
-	is "gotest.tools/v3/assert/cmp"
+	"github.com/dropwhile/assert"
 )
 
 var formattests = []struct {
@@ -99,7 +98,7 @@ func TestStrfFormat(t *testing.T) {
 	tm := time.Date(2009, time.January, 2, 3, 4, 0, 1234567, time.UTC)
 	for _, tt := range formattests {
 		output := Format(tt.format, tm)
-		assert.Check(t, is.Equal(tt.expected, output), fmt.Sprintf("%s not right", tt.format))
+		assert.Equal(t, tt.expected, output, fmt.Sprintf("%s not right", tt.format))
 	}
 }
 
@@ -122,7 +121,7 @@ func TestStrfFormatNotUTC(t *testing.T) {
 			expected = tt.expected
 		}
 		output := Format(tt.format, tm)
-		assert.Check(t, is.Equal(expected, output), fmt.Sprintf("%s not right", tt.format))
+		assert.Equal(t, expected, output, fmt.Sprintf("%s not right", tt.format))
 	}
 }
 
